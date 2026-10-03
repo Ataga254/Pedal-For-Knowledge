@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Pedal for Knowledge: long-distance rides that fund a course book for every pupil, and bicycles as we grow.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Pedal for Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: an exercise-book page — blue ruled lines, a red margin, and a riding route that runs through it */
+:root{
+  --paper:#f7f8f3; --paper-2:#eef1e8; --ink:#1d2a44; --ink-soft:#4c5872;
+  --rule:#c9d6ea; --margin:#d6453d; --amber:#e8a317; --leaf:#2f6b4f;
+  --card:#ffffff; --line:#dfe4ea;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121a2a; --paper-2:#18223a; --ink:#eaeef6; --ink-soft:#a8b2c7;
+  --rule:#26324d; --margin:#ef6a5f; --amber:#f2b63c; --leaf:#5cb48a;
+  --card:#1a2440; --line:#2b3756; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121a2a; --paper-2:#18223a; --ink:#eaeef6; --ink-soft:#a8b2c7;
+  --rule:#26324d; --margin:#ef6a5f; --amber:#f2b63c; --leaf:#5cb48a;
+  --card:#1a2440; --line:#2b3756; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:16px}
+a{color:inherit}
+.wrap{max-width:1080px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:900;line-height:.95;letter-spacing:.005em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.2rem,6vw,3.6rem);text-transform:uppercase}
+h3{font-size:1.6rem;font-weight:700;text-transform:uppercase}
+p{margin:0;max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--margin)}
+section{padding-block:72px;display:grid;gap:28px}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:900;font-size:1.5rem;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand svg{width:34px;height:22px}
+nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;flex-wrap:wrap;font-size:.95rem}
+nav ul a{text-decoration:none;color:var(--ink-soft)}
+nav ul a:hover{color:var(--ink)}
+
+/* hero: ruled page */
+.hero{position:relative;border-radius:6px;overflow:hidden;background:
+  linear-gradient(90deg,transparent 54px,var(--margin) 54px,var(--margin) 56px,transparent 56px),
+  repeating-linear-gradient(180deg,transparent 0 33px,var(--rule) 33px 34px),var(--paper-2);
+  padding:48px 24px 40px 76px;display:grid;gap:22px}
+.hero h1{font-size:clamp(3rem,11vw,7.2rem);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--margin)}
+.hero p{font-size:1.15rem;color:var(--ink-soft)}
+.route{width:100%;height:auto;max-width:100%;display:block;margin-top:4px}
+.route .road{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-dasharray:2 9}
+.route .done{fill:none;stroke:var(--amber);stroke-width:5;stroke-linecap:round}
+.route text{font-family:var(--mono);font-size:11px;fill:var(--ink-soft)}
+.route circle{fill:var(--paper-2);stroke:var(--ink);stroke-width:2}
+.route .rider{fill:var(--margin);stroke:none}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;border:2px solid var(--ink);font-size:1rem}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{transform:translateY(-1px)}
+
+/* problem */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:36px;align-items:center}
+.split > *{min-width:0}
+.desks{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end}
+.desk{display:grid;gap:8px;justify-items:center;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);text-align:center}
+.desk svg{width:150px;height:auto}
+.desk svg .b{fill:var(--margin)} .desk svg .k{fill:var(--leaf)} .desk svg .p{fill:var(--ink)}
+.desk svg .t{fill:none;stroke:var(--ink-soft);stroke-width:2}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0;border-top:2px solid var(--ink)}
+.step{padding:22px 20px 22px 0;display:grid;gap:10px;align-content:start;border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--mono);color:var(--margin);font-size:.85rem}
+.step p{color:var(--ink-soft);font-size:1rem}
+
+/* roadmap */
+.road-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px;display:grid;gap:12px;align-content:start}
+.stage .tag{justify-self:start;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.tag.now{background:var(--amber);color:#1d2a44}
+.tag.next{border:1.5px dashed var(--ink-soft);color:var(--ink-soft)}
+.stage p{color:var(--ink-soft)}
+
+/* impact */
+.impact{background:var(--ink);color:var(--paper);border-radius:6px;padding:48px 24px;display:grid;gap:28px}
+.impact .eyebrow{color:var(--amber)}
+.impact p{color:color-mix(in srgb,var(--paper) 80%,transparent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:20px}
+.cards div{border-top:3px solid var(--amber);padding-top:14px;display:grid;gap:8px;align-content:start}
+.cards h3{font-size:1.35rem}
+
+/* founder */
+blockquote{margin:0;font-size:clamp(1.3rem,3.2vw,1.8rem);line-height:1.35;max-width:30ch;border-left:4px solid var(--margin);padding-left:20px}
+.sig{font-family:var(--mono);font-size:.85rem;color:var(--ink-soft)}
+
+/* give */
+.give{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.give .stage{border-top:4px solid var(--leaf)}
+.unit{font-family:var(--mono);font-size:.85rem;color:var(--leaf)}
+.note{background:var(--paper-2);border:1.5px dashed var(--ink-soft);border-radius:6px;padding:18px 20px;color:var(--ink-soft);font-size:.98rem}
+
+/* partners */
+.who{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0}
+.who li{border:1.5px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.95rem}
+
+/* join form */
+.join{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:36px;align-items:start}
+.join > *{min-width:0}
+form{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px;display:grid;gap:18px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+label,legend{font-weight:700;font-size:.95rem}
+.opt{font-weight:400;color:var(--ink-soft);font-size:.85rem}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:6px;padding:11px 12px}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--amber) 45%,transparent)}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{font-weight:400;display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chips input{accent-color:var(--margin)}
+.chips label:has(input:checked){border-color:var(--ink);background:var(--paper-2);font-weight:700}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.92rem;color:var(--ink-soft)}
+.consent input{margin-top:4px;accent-color:var(--margin)}
+.err{color:var(--margin);font-size:.88rem;min-height:1em}
+button.btn{cursor:pointer;font-family:inherit}
+button.btn:disabled{opacity:.6;cursor:wait}
+.done{display:grid;gap:12px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--leaf);border-radius:6px;padding:28px}
+.hp{position:absolute;left:-9999px}
+
+footer{border-top:1px solid var(--line);padding-block:28px 40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.9rem;color:var(--ink-soft)}
+
+@media (max-width:560px){
+  .hero{padding:36px 18px 32px 46px;background:
+    linear-gradient(90deg,transparent 28px,var(--margin) 28px,var(--margin) 30px,transparent 30px),
+    repeating-linear-gradient(180deg,transparent 0 33px,var(--rule) 33px 34px),var(--paper-2)}
+  section{padding-block:52px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .route .done{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.4s ease-out .3s forwards}
+  @keyframes draw{to{stroke-dashoffset:520}}
+  .btn{transition:transform .15s}
+}
+@media (prefers-reduced-motion:reduce){.route .done{stroke-dasharray:380 900}}
+</style>
+
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 34 22" aria-hidden="true"><circle cx="7" cy="15" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="27" cy="15" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M7 15 L14 5 L22 5 L27 15 M14 5 L18 15 L22 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
+      Pedal for Knowledge
+    </a>
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#give">Donate</a></li>
+      <li><a href="#partner">Partner</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <span class="eyebrow">Long-distance rides · Course books · Better results</span>
+    <h1>Every kilometre<br>buys a <em>book</em></h1>
+    <p>We ride long distances to raise awareness and funds, so that every pupil and student owns their own course book instead of sharing one between several classmates.</p>
+    <svg class="route" viewBox="0 0 900 120" role="img" aria-label="A riding route with kilometre markers from 0 to 200">
+      <path class="road" d="M10 90 C 120 30, 200 110, 320 70 S 520 20, 620 70 S 800 100, 890 40"/>
+      <path class="done" d="M10 90 C 120 30, 200 110, 320 70 S 520 20, 620 70 S 800 100, 890 40"/>
+      <circle cx="10" cy="90" r="6"/><text x="0" y="114">0 km</text>
+      <circle cx="320" cy="70" r="6"/><text x="300" y="98">50 km</text>
+      <circle cx="620" cy="70" r="6"/><text x="598" y="98">120 km</text>
+      <circle cx="890" cy="40" r="6"/><text x="840" y="22">200 km</text>
+    </svg>
+    <div class="cta">
+      <a class="btn primary" href="#give">Support a ride</a>
+      <a class="btn" href="#partner">Become a partner</a>
+    </div>
+  </header>
+
+  <section id="why" class="split">
+    <div style="display:grid;gap:18px">
+      <span class="eyebrow">The problem</span>
+      <h2>One book. Too many readers.</h2>
+      <p>In many primary and high school classrooms, a single course book is shared by a group of pupils. Homework waits for a turn. Revision happens in short borrowed moments. Learning slows down for everyone at the desk.</p>
+      <p>A book of your own changes that. You can read ahead, revise at home and keep notes in the margins.</p>
+    </div>
+    <div class="desks" aria-label="Before and after: one shared book versus one book each">
+      <div class="desk">
+        <svg viewBox="0 0 150 90" aria-hidden="true"><rect class="t" x="5" y="60" width="140" height="6" rx="2"/><circle class="p" cx="30" cy="30" r="9"/><circle class="p" cx="75" cy="30" r="9"/><circle class="p" cx="120" cy="30" r="9"/><rect class="b" x="62" y="46" width="26" height="12" rx="2"/></svg>
+        <span>Today: 1 book, 3 pupils</span>
+      </div>
+      <div class="desk">
+        <svg viewBox="0 0 150 90" aria-hidden="true"><rect class="t" x="5" y="60" width="140" height="6" rx="2"/><circle class="p" cx="30" cy="30" r="9"/><circle class="p" cx="75" cy="30" r="9"/><circle class="p" cx="120" cy="30" r="9"/><rect class="k" x="17" y="46" width="26" height="12" rx="2"/><rect class="k" x="62" y="46" width="26" height="12" rx="2"/><rect class="k" x="107" y="46" width="26" height="12" rx="2"/></svg>
+        <span>Our goal: 1 book each</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <span class="eyebrow">How it works</span>
+    <h2>Ride. Raise. Read. Reward.</h2>
+    <div class="steps">
+      <div class="step"><span class="n">01 · Ride</span><h3>Go the distance</h3><p>We plan long-distance rides and share the route, so supporters can follow every kilometre.</p></div>
+      <div class="step"><span class="n">02 · Raise</span><h3>Fund the ride</h3><p>Friends, colleagues and companies sponsor a kilometre, a book or a whole class.</p></div>
+      <div class="step"><span class="n">03 · Read</span><h3>Deliver the books</h3><p>Funds buy the course books each school needs, handed directly to the pupils who use them.</p></div>
+      <div class="step"><span class="n">04 · Reward</span><h3>Track and celebrate</h3><p>We follow results term by term and reward the pupils who improve the most.</p></div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <span class="eyebrow">Where we're heading</span>
+    <h2>From books to bicycles</h2>
+    <div class="road-map">
+      <div class="stage">
+        <span class="tag now">Now</span>
+        <h3>A course book for every pupil</h3>
+        <p>Our first goal is simple: no more sharing. Each pupil and student in our partner schools gets their own course books.</p>
+      </div>
+      <div class="stage">
+        <span class="tag next">As we grow</span>
+        <h3>Bicycles for long journeys</h3>
+        <p>Many pupils walk long distances and arrive at school tired before the first lesson. A bicycle cuts that journey short, so they arrive with energy and a clear head, ready to learn.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="impact">
+    <span class="eyebrow">Measuring impact</span>
+    <h2>We don't hand over books and walk away</h2>
+    <p>We want to see what a book of your own actually does for a pupil. Working with each school, we follow performance before and after resources arrive, and use what we learn to decide where to go next.</p>
+    <div class="cards">
+      <div><h3>Set a baseline</h3><p>Record each pupil's results before the books arrive.</p></div>
+      <div><h3>Follow every term</h3><p>Track progress term by term with the school's own assessments.</p></div>
+      <div><h3>Reward improvement</h3><p>Award the pupils who improve the most, so progress is noticed and celebrated.</p></div>
+      <div><h3>Report back</h3><p>Share the results with donors and partners, so you can see what your support did.</p></div>
+    </div>
+  </section>
+
+  <section id="story" class="split">
+    <div style="display:grid;gap:18px">
+      <span class="eyebrow">Why I ride</span>
+      <blockquote>I cycle to work, and I arrive feeling energised and ready to start my day. I want every pupil to start their school day the same way.</blockquote>
+      <span class="sig">— Nelson Ataga, founder</span>
+    </div>
+    <p>Cycling has always been something I love. Now I want it to do more than keep me fit. Each long ride is a chance to tell people about pupils who need books, and to raise the money to buy them. Every kilometre you sponsor goes toward putting a book in a pupil's hands.</p>
+  </section>
+
+  <section id="give">
+    <span class="eyebrow">Donate</span>
+    <h2>Back a ride</h2>
+    <p>Every contribution goes toward books today, and toward bicycles as we grow.</p>
+    <div class="give">
+      <div class="stage"><span class="unit">per km</span><h3>Sponsor a kilometre</h3><p>Pledge an amount for every kilometre of the next ride.</p></div>
+      <div class="stage"><span class="unit">per pupil</span><h3>Sponsor a book</h3><p>Buy one pupil their own course book for the year.</p></div>
+      <div class="stage"><span class="unit">per class</span><h3>Sponsor a class</h3><p>Equip a whole class so nobody shares a book again.</p></div>
+    </div>
+    <div class="note">Donation channels (M-Pesa and bank details) will be listed here soon. Until then, <a href="#join">leave your details</a> and we'll get in touch about supporting the next ride.</div>
+  </section>
+
+  <section id="partner">
+    <span class="eyebrow">Partner with us</span>
+    <h2>Help us go further</h2>
+    <p>We welcome partners who want to grow this with us, whether you fund books, supply bicycles, open your school, or ride alongside us.</p>
+    <ul class="who">
+      <li>Schools</li><li>Businesses &amp; sponsors</li><li>Cycling clubs</li><li>Bookshops &amp; publishers</li><li>Bike shops</li><li>Volunteers</li>
+    </ul>
+    <div class="cta"><a class="btn primary" href="#join">Talk to us about partnering</a></div>
+  </section>
+
+  <section id="join" class="join">
+    <div style="display:grid;gap:18px">
+      <span class="eyebrow">Get involved</span>
+      <h2>Leave your details</h2>
+      <p>Whether you want to donate, partner with us or ride along, tell us a little about yourself and we'll follow up personally.</p>
+      <p class="opt">We only use your details to contact you about Pedal for Knowledge. We never share them.</p>
+    </div>
+    <div>
+      <form id="joinForm" name="get-involved" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="get-involved">
+        <p class="hp"><label>Leave this empty <input name="bot-field" id="botField" tabindex="-1" autocomplete="off"></label></p>
+        <fieldset>
+          <legend>I'd like to</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="interest" value="Donate" id="intDonate"> Donate</label>
+            <label><input type="checkbox" name="interest" value="Partner" id="intPartner"> Partner</label>
+            <label><input type="checkbox" name="interest" value="Volunteer" id="intVolunteer"> Volunteer</label>
+            <label><input type="checkbox" name="interest" value="Ride along" id="intRide"> Ride along</label>
+          </div>
+          <span class="err" id="errInterest"></span>
+        </fieldset>
+        <div class="row">
+          <div class="field"><label for="fullName">Full name</label><input type="text" id="fullName" name="name" autocomplete="name" required><span class="err" id="errName"></span></div>
+          <div class="field"><label for="org">Organisation <span class="opt">(optional)</span></label><input type="text" id="org" name="organisation" autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required><span class="err" id="errEmail"></span></div>
+          <div class="field"><label for="phone">Phone <span class="opt">(optional)</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+254 7XX XXX XXX"></div>
+        </div>
+        <div class="field">
+          <label for="support">How you'd like to help</label>
+          <select id="support" name="support">
+            <option value="">Choose one</option>
+            <option>Sponsor a kilometre</option>
+            <option>Sponsor a book</option>
+            <option>Sponsor a class</option>
+            <option>Bicycles programme (future)</option>
+            <option>School partnership</option>
+            <option>Corporate partnership or sponsorship</option>
+            <option>Supply books or bicycles</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Message <span class="opt">(optional)</span></label><textarea id="message" name="message" placeholder="Tell us how you'd like to be involved"></textarea></div>
+        <label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" value="yes"> I agree to be contacted by Pedal for Knowledge about this enquiry.</label>
+        <span class="err" id="errConsent"></span>
+        <div><button type="submit" class="btn primary" id="submitBtn">Send my details</button></div>
+        <span class="err" id="errSubmit" role="alert"></span>
+      </form>
+      <div class="done" id="doneMsg" hidden>
+        <h3>Thank you</h3>
+        <p>We've received your details and will be in touch soon.</p>
+        <p class="opt" id="previewNote" hidden>This is a preview copy of the site, so nothing was sent. The form sends for real once the site is live on your domain.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Pedal for Knowledge · Riding for every reader</span>
+    <span>Books now. Bicycles next.</span>
+  </footer>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('joinForm'); if(!f) return;
+  var $=function(id){return document.getElementById(id)};
+  var isPreview=/claude|anthropic|localhost|^$/.test(location.hostname)||location.protocol==='file:';
+  function setErr(id,msg){$(id).textContent=msg||''}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    var interests=[].slice.call(f.querySelectorAll('input[name=interest]:checked'));
+    setErr('errInterest',interests.length?'':'Pick at least one option.'); if(!interests.length) ok=false;
+    var name=$('fullName').value.trim(); setErr('errName',name?'':'Please enter your name.'); if(!name) ok=false;
+    var email=$('email').value.trim(); var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setErr('errEmail',emailOk?'':'Please enter a valid email address.'); if(!emailOk) ok=false;
+    setErr('errConsent',$('consent').checked?'':'Please tick this box so we can contact you.'); if(!$('consent').checked) ok=false;
+    setErr('errSubmit','');
+    if(!ok){var first=f.querySelector('.err:not(:empty)'); if(first) first.scrollIntoView({block:'center',behavior:'smooth'}); return;}
+    if($('botField').value) return;
+    function finish(){f.hidden=true; $('doneMsg').hidden=false; if(isPreview) $('previewNote').hidden=false;}
+    if(isPreview){finish(); return;}
+    var btn=$('submitBtn'); btn.disabled=true; btn.textContent='Sending…';
+    var data=new URLSearchParams();
+    new FormData(f).forEach(function(v,k){data.append(k,v)});
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data.toString()})
+      .then(function(r){if(!r.ok) throw new Error(r.status); finish();})
+      .catch(function(){btn.disabled=false; btn.textContent='Send my details'; setErr('errSubmit','Your details didn’t send. Check your connection and try again.');});
+  });
+})();
+</script>
+
+</body>
+</html>
